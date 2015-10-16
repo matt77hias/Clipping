@@ -224,10 +224,8 @@ def sort_vertices(p_vs, a0=0, a1=1):
             index0 = (j+nb_p_vs-1) % nb_p_vs
         elif d1 == 0.0:
             if index0 != -1:
-                p_v1 = p_vs[index0]
-                d0 = p_v2[a0] - p_v1[a0]
-                d1 = p_v2[a1] - p_v1[a1]
-                if d1 / d0  < 0:
+                p_v = p_vs[index0]
+                if inside3D(p_v, p_v1, p_v2, a0, a1):
                     return p_vs
                 else:
                     p_vs.reverse()
