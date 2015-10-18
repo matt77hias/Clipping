@@ -40,8 +40,7 @@ def area2D(p_vs):
 def area3D(p_vs, N):
     area = 0.0
     nb_p_vs = len(p_vs)
-    #an, ax, ay, az       abs value of normal and its coords
-
+    
     if (nb_p_vs < 3):
         return area
 
