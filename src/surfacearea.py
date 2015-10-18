@@ -51,33 +51,27 @@ def area3D(p_vs, N):
     elif (ay > az): lca = 1
     else: lca = 2
 
-    #2D projection
+    an = np.sqrt(ax*ax + ay*ay + az*az)
     if lca == 0:
         for j in range(nb_p_vs):
             p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
             p_v2 = p_vs[j]
             p_v3 = p_vs[(j+nb_p_vs+1) % nb_p_vs]
             area += p_v2[1] * (p_v3[2] - p_v1[2])
+        area *= (an / N[0])
     elif lca == 1:
         for j in range(nb_p_vs):
             p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
             p_v2 = p_vs[j]
             p_v3 = p_vs[(j+nb_p_vs+1) % nb_p_vs]
             area += p_v2[2] * (p_v3[0] - p_v1[0])
+        area *= (an / N[1])
     else:
         for j in range(nb_p_vs):
             p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
             p_v2 = p_vs[j]
             p_v3 = p_vs[(j+nb_p_vs+1) % nb_p_vs]
             area += p_v2[0] * (p_v3[1] - p_v1[1])
-
-    #Area before - after transformation scale change
-    an = np.sqrt(ax*ax + ay*ay + az*az)
-    if lca == 0:
-        area *= (an / N[0])
-    elif lca == 1:
-        area *= (an / N[1])
-    elif lca == 2:
         area *= (an / N[2])
-    
+
     return 0.5 * abs(area)
