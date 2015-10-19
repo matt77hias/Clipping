@@ -214,7 +214,7 @@ def sort_vertices(p_vs, a0=0, a1=1):
         d0 = p_v2[a0] - p_v1[a0]
         d1 = p_v2[a1] - p_v1[a1]
         
-        b0 = (d0 != 0.0)
+        b0 = (d0 != 0.0) #TODO: precision
 	b1 = (d1 != 0.0)
         if b0 and b1:
             if d1 / d0  < 0:
@@ -241,58 +241,3 @@ def sort_vertices(p_vs, a0=0, a1=1):
                     return p_vs
             index1 = (j+nb_p_vs-1) % nb_p_vs
     return p_vs
-
-def sort_triangle(t, a0=0, a1=1):
-    return sort_triangle_vertices(t[0], t[1], t[2], a0, a1)
-#ERROR AA case   
-def sort_triangle_vertices(p_v1, p_v2, p_v3, a0=0, a1=1):
-    d0_12 = p_v2[a0] - p_v1[a0]
-    d1_12 = p_v2[a1] - p_v1[a1]
-    if d0_12 == 0.0 or d1_12 == 0.0:
-        d0_13 = p_v3[a0] - p_v1[a0]
-        d1_13 = p_v3[a1] - p_v1[a1]
-        if d0_13 == 0.0 or d1_13 == 0.0:
-            d0_23 = p_v3[a0] - p_v2[a0]
-            d1_23 = p_v3[a1] - p_v2[a1]
-            if d0_23 == 0.0: 
-                if p_v1[a1] <= p_v2[a1] and p_v1[a1] <= p_v2[a1]:
-                    if p_v2[a1] >= p_v3[a1]:
-                        return [p_v1, p_v3, p_v2]
-                    else:
-                        return [p_v1, p_v2, p_v3]
-                elif p_v2[a1] <= p_v3[a1]:
-                    if p_v1[a1] >= p_v3[a1]:
-                        return [p_v2, p_v3, p_v1]
-                    else:
-                        return [p_v2, p_v1, p_v3]
-                elif p_v1[a1] >= p_v2[a1]:
-                    return [p_v3, p_v2, p_v1]
-                else:
-                    return [p_v3, p_v1, p_v2]
-            elif d1_23 == 0.0:  
-                if p_v1[a0] <= p_v2[a0] and p_v1[a0] <= p_v2[a0]:
-                    if p_v2[a0] >= p_v3[a0]:
-                        return [p_v1, p_v3, p_v2]
-                    else:
-                        return [p_v1, p_v2, p_v3]
-                elif p_v2[a0] <= p_v3[a0]:
-                    if p_v1[a0] >= p_v3[a0]:
-                        return [p_v2, p_v3, p_v1]
-                    else:
-                        return [p_v2, p_v1, p_v3]
-                elif p_v1[a0] >= p_v2[a0]:
-                    return [p_v3, p_v2, p_v1]
-                else:
-                    return [p_v3, p_v1, p_v2]
-            elif d1_23 / d0_23 < 0.0:
-                return [p_v2, p_v3, p_v1]
-            else:
-                return [p_v3, p_v2, p_v1]
-        elif d1_13 / d0_13 < 0.0:
-            return [p_v1, p_v3, p_v2]
-        else:
-            return [p_v3, p_v1, p_v2]
-    elif d1_12 / d0_12 < 0.0:
-        return [p_v1, p_v2, p_v3]
-    else:
-        return [p_v2, p_v1, p_v3]
