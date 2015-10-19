@@ -122,23 +122,20 @@ def plot_line3D(p_vs, color):
     ax.set_zlabel("z")
 
 def clip3D_AABB(p_vs, pmin, pmax):
-    c_vs = [[0.0, pmax[1],pmax[2]], [0.0, pmin[1],pmax[2]], [0.0, pmin[1], pmin[2]], [0.0, pmax[1], pmin[2]]]
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
     sort_vertices(p_vs, a0=1, a1=2)
-    print(p_vs)
+    c_vs = [[0.0, pmax[1],pmax[2]], [0.0, pmin[1],pmax[2]], [0.0, pmin[1], pmin[2]], [0.0, pmax[1], pmin[2]]]
     p_vs = clip3D_plane(p_vs, c_vs, a0=1, a1=2)
-    c_vs = [[pmin[0], 0.0, pmax[2]],[pmax[0], 0.0, pmax[2]],[pmax[0], 0.0, pmin[2]],[pmin[0], 0.0, pmin[2]]]
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
     sort_vertices(p_vs, a0=2, a1=0)
-    print(p_vs)
+    c_vs = [[pmin[0], 0.0, pmax[2]],[pmax[0], 0.0, pmax[2]],[pmax[0], 0.0, pmin[2]],[pmin[0], 0.0, pmin[2]]]
     p_vs = clip3D_plane(p_vs, c_vs, a0=2, a1=0)
-    c_vs = [[pmax[0], pmin[1], 0.0],[pmax[0], pmax[1], 0.0],[pmin[0], pmax[1], 0.0],[pmin[0], pmin[1], 0.0]]
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
     sort_vertices(p_vs, a0=0, a1=1)
-    print(p_vs)
+    c_vs = [[pmax[0], pmin[1], 0.0],[pmax[0], pmax[1], 0.0],[pmin[0], pmax[1], 0.0],[pmin[0], pmin[1], 0.0]]
     p_vs = clip3D_plane(p_vs, c_vs, a0=0, a1=1)
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
