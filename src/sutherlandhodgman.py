@@ -125,15 +125,21 @@ def clip3D_AABB(p_vs, pmin, pmax):
     c_vs = [[0.0, pmax[1],pmax[2]], [0.0, pmin[1],pmax[2]], [0.0, pmin[1], pmin[2]], [0.0, pmax[1], pmin[2]]]
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
-    p_vs = clip3D_plane(sort_vertices(p_vs, a0=1, a1=2), c_vs, a0=1, a1=2)
+    sort_vertices(p_vs, a0=1, a1=2)
+    print(p_vs)
+    p_vs = clip3D_plane(p_vs, c_vs, a0=1, a1=2)
     c_vs = [[pmin[0], 0.0, pmax[2]],[pmax[0], 0.0, pmax[2]],[pmax[0], 0.0, pmin[2]],[pmin[0], 0.0, pmin[2]]]
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
-    p_vs = clip3D_plane(sort_vertices(p_vs, a0=2, a1=0), c_vs, a0=2, a1=0)
+    sort_vertices(p_vs, a0=2, a1=0)
+    print(p_vs)
+    p_vs = clip3D_plane(p_vs, c_vs, a0=2, a1=0)
     c_vs = [[pmax[0], pmin[1], 0.0],[pmax[0], pmax[1], 0.0],[pmin[0], pmax[1], 0.0],[pmin[0], pmin[1], 0.0]]
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
-    p_vs = clip3D_plane(sort_vertices(p_vs, a0=0, a1=1), c_vs, a0=0, a1=1)
+    sort_vertices(p_vs, a0=0, a1=1)
+    print(p_vs)
+    p_vs = clip3D_plane(p_vs, c_vs, a0=0, a1=1)
     print(p_vs)
     print('------------------------------------------------------------------------------------------------------------------------------')
     return p_vs
@@ -207,13 +213,16 @@ def sort_vertices(p_vs, a0=0, a1=1):
         p_v2 = p_vs[j]
         d0 = p_v2[a0] - p_v1[a0]
         d1 = p_v2[a1] - p_v1[a1]
-        if d0 != 0.0 and d1 != 0.0:
+        
+        b0 = (d0 != 0.0)
+	b1 = (d1 != 0.0)
+        if b0 and b1:
             if d1 / d0  < 0:
                 return p_vs
             else:
                 p_vs.reverse()
                 return p_vs
-        elif d0 == 0.0:
+        elif not b0 and b1:
             if index1 != -1:
                 p_v = p_vs[index1]
                 if inside3D(p_v, p_v1, p_v2, a0, a1): #or not inside3D(p_v, p_v2, p_v1, a0, a1):
@@ -222,7 +231,7 @@ def sort_vertices(p_vs, a0=0, a1=1):
                     p_vs.reverse()
                     return p_vs
             index0 = (j+nb_p_vs-1) % nb_p_vs
-        elif d1 == 0.0:
+        elif b0 and not b1:
             if index0 != -1:
                 p_v = p_vs[index0]
                 if inside3D(p_v, p_v1, p_v2, a0, a1): #or not inside3D(p_v, p_v2, p_v1, a0, a1):
