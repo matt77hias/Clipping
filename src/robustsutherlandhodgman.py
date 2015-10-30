@@ -17,9 +17,8 @@ def plot_clip3D_AABB(p_vs, pmin, pmax):
     plt.plot_line3D(p_vs, color='r')
     plt.plot_AABB(pmin, pmax)
     result = clip3D_AABB(p_vs, pmin, pmax, step=True)
-    print(result)
-    print(area3D(result, n))
     plt.plot_line3D(result, color='g')
+    print(area3D(result, n))
 
 def clip3D_AABB(p_vs, pmin, pmax, step=False):
     for a in range(3):
