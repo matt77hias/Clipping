@@ -1,4 +1,5 @@
 import numpy as np
+from orientation import get_normal
 
 ###################################################################################################################################################################################
 ## Surface Area
@@ -37,12 +38,14 @@ def area2D(p_vs):
         area += p_v2[0] * (p_v3[1] - p_v1[1])
     return 0.5 * abs(area)
     
-def area3D(p_vs, n):
+def area3D(p_vs, n=None):
     area = 0.0
     nb_p_vs = len(p_vs)
     
     if (nb_p_vs < 3):
         return area
+    elif (nb_p_vs == 3 and n==None):
+        n = get_normal(p_vs)
 
     ax = abs(n[0])
     ay = abs(n[1])
