@@ -21,7 +21,7 @@ def plot_clip3D_AABB(p_vs, pmin, pmax):
     plt.plot_line3D(result, color='g')
 
 def clip3D_AABB(p_vs, pmin, pmax, step=False):
-    for a in range(3):
+    for a in range(1):
        p_vs = clip3D_plane(p_vs, 1.0, a, pmin)
        p_vs = clip3D_plane(p_vs, -1.0, a, pmax)
     return p_vs
@@ -37,18 +37,18 @@ def clip3D_plane(p_vs, s, a, c_v):
         d1 = orientation.classify_aligned(s, a, c_v, p_v1)
         d2 = orientation.classify_aligned(s, a, c_v, p_v2)
         
-        if d2 == -1 and d1 == 1:
+        if d2 < 0 and d1 > 0:
              alpha  = (np.double(p_v2[a]) - np.double(c_v[a])) / (np.double(p_v2[a]) - np.double(p_v1[a]))
              p = interpolate(alpha, p_v1, p_v2)
              new_p_vs.append(p)     
-        elif d2 == 1:
-            if d1 == -1:
+        elif d2 > 0:
+            if d1 < 0:
                 alpha  = (np.double(p_v2[a]) - np.double(c_v[a])) / (np.double(p_v2[a]) - np.double(p_v1[a]))
                 p = interpolate(alpha, p_v1, p_v2)
                 new_p_vs.append(p)
             elif d1 == 0:
                 new_p_vs.append(p_v1)
             new_p_vs.append(p_v2) 
-        elif d2 == 0 and d1 == -1:
+        elif d2 == 0 and d1 < -1:
             new_p_vs.append(p_v2)
     return new_p_vs
