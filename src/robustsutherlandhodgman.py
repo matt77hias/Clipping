@@ -21,7 +21,7 @@ def plot_clip3D_AABB(p_vs, pmin, pmax):
     plt.plot_line3D(result, color='g')
 
 def clip3D_AABB(p_vs, pmin, pmax, step=False):
-    for a in range(1):
+    for a in range(3):
        p_vs = clip3D_plane(p_vs, 1.0, a, pmin)
        p_vs = clip3D_plane(p_vs, -1.0, a, pmax)
     return p_vs
@@ -49,6 +49,6 @@ def clip3D_plane(p_vs, s, a, c_v):
             elif d1 == 0:
                 new_p_vs.append(p_v1)
             new_p_vs.append(p_v2) 
-        elif d2 == 0 and d1 < -1:
+        elif d2 == 0 and d1 < 0:
             new_p_vs.append(p_v2)
     return new_p_vs
