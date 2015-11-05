@@ -22,7 +22,7 @@ def inside3D(c_v1, c_v2, p_v2, a0, a1):
     #return (np.float32(c_v1[a0]) - np.float32(p_v2[a0])) * (np.float32(c_v2[a1]) - np.float32(p_v2[a1])) >= (np.float32(c_v1[a1]) - np.float32(p_v2[a1])) * (np.float32(c_v2[a0]) - np.float32(p_v2[a0]))
     return (np.float64(c_v1[a0]) - np.float64(p_v2[a0])) * (np.float64(c_v2[a1]) - np.float64(p_v2[a1])) >= (np.float64(c_v1[a1]) - np.float64(p_v2[a1])) * (np.float64(c_v2[a0]) - np.float64(p_v2[a0]))
    
-PLANE_THICKNESS_EPSILON = 0.00001; 
+PLANE_THICKNESS_EPSILON = 0.00001
 
 def classify_distance(d):
     if (d > PLANE_THICKNESS_EPSILON):

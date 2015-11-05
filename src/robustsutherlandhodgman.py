@@ -33,25 +33,34 @@ def clip3D_plane(p_vs, s, a, c_v):
 
     nb_p_vs = len(p_vs)
     if (nb_p_vs <= 1):  return []
+    b = True
     for j in range(nb_p_vs):
         p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
         p_v2 = p_vs[j]
-     
+
         d1 = orientation.classify_aligned(s, a, c_v, p_v1)
         d2 = orientation.classify_aligned(s, a, c_v, p_v2)
-        
-        if d2 < 0 and d1 > 0:
-             alpha  = (np.double(p_v2[a]) - np.double(c_v[a])) / (np.double(p_v2[a]) - np.double(p_v1[a]))
-             p = interpolate(alpha, p_v1, p_v2)
-             new_p_vs.append(p)     
-        elif d2 > 0:
-            if d1 < 0:
+        if d2 < 0:
+            b = False
+            if d1 > 0:
                 alpha  = (np.double(p_v2[a]) - np.double(c_v[a])) / (np.double(p_v2[a]) - np.double(p_v1[a]))
                 p = interpolate(alpha, p_v1, p_v2)
                 new_p_vs.append(p)
             elif d1 == 0:
                 new_p_vs.append(p_v1)
-            new_p_vs.append(p_v2) 
-        elif d2 == 0 and d1 < 0:
+        elif d2 > 0:
+            b = False
+            if d1 < 0:
+                alpha  = (np.double(p_v2[a]) - np.double(c_v[a])) / (np.double(p_v2[a]) - np.double(p_v1[a]))
+                p = interpolate(alpha, p_v1, p_v2)
+                new_p_vs.append(p)
+            elif d1 == 0 :
+                new_p_vs.append(p_v1)
             new_p_vs.append(p_v2)
-    return new_p_vs
+        else:
+            if d1 != 0:
+                new_p_vs.append(p_v2)
+    if b:
+        return p_vs
+    else:
+        return new_p_vs
