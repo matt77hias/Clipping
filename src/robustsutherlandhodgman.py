@@ -19,7 +19,7 @@ def plot_clip3D_AABB(p_vs, pmin, pmax):
     result = clip3D_AABB(p_vs, pmin, pmax, step=True)
     plt.plot_line3D(result, color='g')
     print(area3D(result, n))
-
+    
 def clip3D_AABB(p_vs, pmin, pmax, step=False):
     for a in range(3):
        p_vs = clip3D_plane(p_vs, 1.0, a, pmin)
