@@ -1,9 +1,9 @@
 import numpy as np
-from vector_utils import normalize
+from math_utils import normalize
 
-def get_normal(triangle):
-    p1 = np.array(triangle[0])
-    return normalize(np.cross(np.array(triangle[1])-p1, np.array(triangle[2])-p1))
+def get_normal(p_vs):
+    #TODO: only 3D triangles supported at the moment
+    return normalize(np.cross(p_vs[1]-p_vs[0], p_vs[2]-p_vs[0]))
 
 ###################################################################################################################################################################################
 ## Vertex classification tools
@@ -13,14 +13,7 @@ def inside2D(c_v1, c_v2, p_v):
     return (c_v1[0] - p_v[0]) * (c_v2[1] - p_v[1]) >= (c_v1[1] - p_v[1]) * (c_v2[0] - p_v[0]);  
    
 def inside3D(c_v1, c_v2, p_v2, a0, a1):
-    #print((np.float32(c_v1[a0]) - np.float32(p_v2[a0])) * (np.float32(c_v2[a1]) - np.float32(p_v2[a1])))
-    #print((np.float32(c_v1[a1]) - np.float32(p_v2[a1])) * (np.float32(c_v2[a0]) - np.float32(p_v2[a0])))
-    #print((np.float64(c_v1[a0]) - np.float64(p_v2[a0])) * (np.float64(c_v2[a1]) - np.float64(p_v2[a1])))
-    #print((np.float64(c_v1[a1]) - np.float64(p_v2[a1])) * (np.float64(c_v2[a0]) - np.float64(p_v2[a0])))
-    
-    #return (c_v1[a0] - p_v2[a0]) * (c_v2[a1] - p_v2[a1]) >= (c_v1[a1] - p_v2[a1]) * (c_v2[a0] - p_v2[a0]);   
-    #return (np.float32(c_v1[a0]) - np.float32(p_v2[a0])) * (np.float32(c_v2[a1]) - np.float32(p_v2[a1])) >= (np.float32(c_v1[a1]) - np.float32(p_v2[a1])) * (np.float32(c_v2[a0]) - np.float32(p_v2[a0]))
-    return (np.float64(c_v1[a0]) - np.float64(p_v2[a0])) * (np.float64(c_v2[a1]) - np.float64(p_v2[a1])) >= (np.float64(c_v1[a1]) - np.float64(p_v2[a1])) * (np.float64(c_v2[a0]) - np.float64(p_v2[a0]))
+    return (c_v1[a0] - p_v2[a0]) * (c_v2[a1] - p_v2[a1]) >= (c_v1[a1] - p_v2[a1]) * (c_v2[a0] - p_v2[a0])
    
 PLANE_THICKNESS_EPSILON = 0.00001
 
@@ -33,11 +26,11 @@ def classify_distance(d):
         return 0
 
 def classify(n, c_v, p_v):
-    d = signed_distance(np.array(n, dtype=np.float64), np.array(c_v, dtype=np.float64), np.array(p_v, dtype=np.float64))
+    d = signed_distance(n, c_v, p_v)
     return classify_distance(d)
         
 def classify_aligned(s, a, c_v, p_v):
-    d = signed_distance_aligned(s, a, np.array(c_v, dtype=np.float64), np.array(p_v, dtype=np.float64))
+    d = signed_distance_aligned(s, a, c_v, p_v)
     return classify_distance(d)
           
 def signed_distance(n, c_v, p_v):

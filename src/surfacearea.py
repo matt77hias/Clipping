@@ -1,12 +1,10 @@
 import numpy as np
-from orientation import get_normal
 
 ###################################################################################################################################################################################
 ## Surface Area
 ## ---------------------------------
 ## Planar polygon
 ###################################################################################################################################################################################
-
 
 #Theorem of Green
 #-----------------------------------------------------------------------------------------------------------------
@@ -19,12 +17,19 @@ from orientation import get_normal
 #    Planimeter
 #    integral_permieter(-y dx + x dy) = integral_area((dx/dx - -dy/dy) dx dy) = 2 area
 
-def area2D(p_vs):
+def area(p_vs, n=None):
+    if (len(p_vs) < 3):
+        return 0.0
+       
+    dim = p_vs[0].shape[0] 
+    if dim == 2:
+        return _area2D(p_vs)
+    elif dim == 3:
+        return _area3D(p_vs, n=n)
+
+def _area2D(p_vs):
     area = 0.0
     nb_p_vs = len(p_vs)
-    
-    if (nb_p_vs < 3):
-        return area
     
     #for j in range(nb_p_vs):
     #    p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
@@ -36,17 +41,13 @@ def area2D(p_vs):
         p_v2 = p_vs[j]
         p_v3 = p_vs[(j+nb_p_vs+1) % nb_p_vs]
         area += p_v2[0] * (p_v3[1] - p_v1[1])
+    
     return 0.5 * abs(area)
     
-def area3D(p_vs, n=None):
+def _area3D(p_vs, n):
     area = 0.0
     nb_p_vs = len(p_vs)
     
-    if (nb_p_vs < 3):
-        return area
-    elif (nb_p_vs == 3 and n==None):
-        n = get_normal(p_vs)
-
     ax = abs(n[0])
     ay = abs(n[1])
     az = abs(n[2])
