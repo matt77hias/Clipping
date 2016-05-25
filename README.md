@@ -6,8 +6,11 @@ Use
 ![example](https://github.com/matt77hias/Clipping/blob/master/res/Example.png)
 
 ~~~~{.python}
+from numpy import array
+from test import plot_clip_AABB_robust
+
 # The vertices of the polygon to clip
-p_vs = [np.array([0.0, 0.0, 95.0]), np.array([80.0, 0.0, 32.0]), np.array([100.0, 75.0, -45.0])]
+p_vs = [array([0.0, 0.0, 95.0]), array([80.0, 0.0, 32.0]), array([100.0, 75.0, -45.0])]
 
 # The min and max bounds of the Axis Aligned Bounding Box used for clipping
 pMin = array([-50.0, -50.0, -50.0])
