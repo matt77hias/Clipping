@@ -2,7 +2,6 @@
 
 Use
 --------
-
 <p align="center"><img src="https://github.com/matt77hias/Clipping/blob/master/res/Example.png" ></p>
 
 ~~~~{.python}
