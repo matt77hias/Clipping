@@ -1,4 +1,5 @@
 # Clipping
+Clipping utilities
 
 Use
 --------
