@@ -50,6 +50,7 @@ def clip_AABP(p_vs, s, a, c_v):
         else:
             if d1 != 0:
                 new_p_vs.append(p_v2)
+
     if b:
         return p_vs
     else:

@@ -15,7 +15,7 @@ def inside2D(c_v1, c_v2, p_v):
 def inside3D(c_v1, c_v2, p_v2, a0, a1):
     return (c_v1[a0] - p_v2[a0]) * (c_v2[a1] - p_v2[a1]) >= (c_v1[a1] - p_v2[a1]) * (c_v2[a0] - p_v2[a0])
    
-PLANE_THICKNESS_EPSILON = 0.00001
+PLANE_THICKNESS_EPSILON = 0.000001
 
 def classify_distance(d):
     if (d > PLANE_THICKNESS_EPSILON):
