@@ -8,14 +8,14 @@ import numpy as np
 
 #Theorem of Green
 #-----------------------------------------------------------------------------------------------------------------
-#integral_perimeter(L dx + M dy) = integral_area((dM/dx - dL/dy) dx dy)
-#    perimeter = oriented, piecewise smooth, simple closed curve in a plane
+#integral_contour(L dx + M dy) = integral_area((dM/dx - dL/dy) dx dy)
+#    contour   = oriented, piecewise smooth, simple closed curve in a plane
 #    area      = region bounded by perimeter
 #    L, M      = functions of (x,y) defined on an open region containing area with continuous partial derivatives
 #
 #Application: 
 #    Planimeter
-#    integral_perimeter(-y dx + x dy) = integral_area((dx/dx - -dy/dy) dx dy) = 2 area
+#    integral_contour(-y dx + x dy) = integral_area((dx/dx - -dy/dy) dx dy) = 2 area
 
 def area(p_vs, n=None):
     if (len(p_vs) < 3):
