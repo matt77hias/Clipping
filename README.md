@@ -1,8 +1,10 @@
 # Clipping
 Clipping utilities
 
-Use
---------
+## About
+A small clipping library supporting Sutherland-Hodgman and Robust Sutherland-Hodgman polygon clipping (against axis-aligned planes in 2D or boxes in 3D).
+
+## Use
 <p align="center"><img src="https://github.com/matt77hias/Clipping/blob/master/res/Example.png" ></p>
 
 ```python
