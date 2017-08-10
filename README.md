@@ -23,3 +23,8 @@ plot_clip_AABB_robust(p_vs, pMin, pMax)
 ```
 
 Note that optimizations, method reuse and Python specific shorthands are still possible. The code however is currently easy portable to C, C++, C# and Java.
+
+## References
+ERICSON C.: *Real-Time Collision Detection*. CRC Press, Inc., Boca Raton, FL, USA, 2004.
+
+SUTHERLAND I. E., HODGMAN G. W.: Reentrant Polygon Clipping. *Communications of the ACM 17*, 1 (jan 1974), pp. 32-42.
