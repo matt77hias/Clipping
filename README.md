@@ -1,5 +1,5 @@
 # Clipping
-Clipping utilities
+Clipping utilities.
 
 ## About
 A small clipping library supporting Sutherland-Hodgman and Robust Sutherland-Hodgman polygon clipping (against axis-aligned planes in 2D or boxes in 3D).
