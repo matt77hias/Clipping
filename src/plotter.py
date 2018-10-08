@@ -81,8 +81,8 @@ class Plotter2D(Plotter):
         self.ax.set_xlabel("x")
         self.ax.set_ylabel("y")
         
-    def set_equal_aspect_ratio(self, AABP, alpha=1.5, delta=0.0):
-        set_equal_aspect_ratio_2D_AABP(self.ax, AABP, alpha=alpha, delta=delta)
+    def set_equal_aspect_ratio(self, nAABB, alpha=1.5, delta=0.0):
+        set_equal_aspect_ratio_2D_AABP(self.ax, nAABB, alpha=alpha, delta=delta)
    
     def plot_line(self, v1, v2, **kwargs):
         self.ax.plot([v1[0], v2[0]], [v1[1], v2[1]], **kwargs)
@@ -108,8 +108,8 @@ class Plotter3D(Plotter):
         self.ax.set_ylabel("y")
         self.ax.set_zlabel("z")
         
-    def set_equal_aspect_ratio(self, AABB, alpha=1.5, delta=0.0):
-        set_equal_aspect_ratio_3D_AABB(self.ax, AABB, alpha=alpha, delta=delta)
+    def set_equal_aspect_ratio(self, nAABB, alpha=1.5, delta=0.0):
+        set_equal_aspect_ratio_3D_AABB(self.ax, nAABB, alpha=alpha, delta=delta)
    
     def plot_line(self, v1, v2, **kwargs):
         self.ax.plot([v1[0], v2[0]], [v1[1], v2[1]], [v1[2], v2[2]], **kwargs)
