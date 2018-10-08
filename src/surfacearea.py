@@ -6,14 +6,14 @@ import numpy as np
 ## Planar polygon
 ###############################################################################
 
-#Theorem of Green
+# Theorem of Green
 #------------------------------------------------------------------------------
-#integral_contour(L dx + M dy) = integral_area((dM/dx - dL/dy) dx dy)
+# integral_contour(L dx + M dy) = integral_area((dM/dx - dL/dy) dx dy)
 #    contour   = oriented, piecewise smooth, simple closed curve in a plane
 #    area      = region bounded by perimeter
 #    L, M      = functions of (x,y) defined on an open region containing area with continuous partial derivatives
 #
-#Application: 
+# Application:
 #    Planimeter
 #    integral_contour(-y dx + x dy) = integral_area((dx/dx - -dy/dy) dx dy) = 2 area
 
@@ -21,7 +21,7 @@ def area(p_vs, n=None):
     if (len(p_vs) < 3):
         return 0.0
 
-    dim = p_vs[0].shape[0] 
+    dim = p_vs[0].shape[0]
     if dim == 2:
         return _area2D(p_vs)
     elif dim == 3:
