@@ -45,7 +45,7 @@ def clip_AABP(p_vs, s, a, c_v):
                 new_p_vs.append(p)
             elif d1 == 0 :
                 _safe_append(new_p_vs, p_v1)
-                
+  
             new_p_vs.append(p_v2)
         else:
             if d1 != 0:
