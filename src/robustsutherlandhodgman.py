@@ -16,11 +16,11 @@ def clip_AABB(p_vs, pMin, pMax, step=False):
        p_vs = clip_AABP(p_vs, -1.0, a, pMax)
        if step: print(p_vs)
     return p_vs
-    
+
 def clip_AABP(p_vs, s, a, c_v):
     nb_p_vs = len(p_vs)
     if (nb_p_vs <= 1):  return []
-    
+
     new_p_vs = []
     b = True #polygon is fully located on clipping plane
     for j in range(nb_p_vs):
@@ -55,7 +55,7 @@ def clip_AABP(p_vs, s, a, c_v):
         return p_vs
     else:
         return new_p_vs
-    
+
 # (c) Matthias Moulin
 def _safe_append(new_p_vs, p_v):
     if (len(new_p_vs) == 0) or (not np.array_equal(new_p_vs[-1], p_v)):
