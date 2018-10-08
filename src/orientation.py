@@ -10,7 +10,7 @@ def get_normal(p_vs):
 ###############################################################################
 
 def inside2D(c_v1, c_v2, p_v):
-    return (c_v1[0] - p_v[0]) * (c_v2[1] - p_v[1]) >= (c_v1[1] - p_v[1]) * (c_v2[0] - p_v[0]);  
+    return (c_v1[0] - p_v[0]) * (c_v2[1] - p_v[1]) >= (c_v1[1] - p_v[1]) * (c_v2[0] - p_v[0])
 
 def inside3D(c_v1, c_v2, p_v2, a0, a1):
     return (c_v1[a0] - p_v2[a0]) * (c_v2[a1] - p_v2[a1]) >= (c_v1[a1] - p_v2[a1]) * (c_v2[a0] - p_v2[a0])
@@ -28,7 +28,7 @@ def classify_distance(d):
 def classify(n, c_v, p_v):
     d = signed_distance(n, c_v, p_v)
     return classify_distance(d)
- 
+
 def classify_aligned(s, a, c_v, p_v):
     d = signed_distance_aligned(s, a, c_v, p_v)
     return classify_distance(d)
