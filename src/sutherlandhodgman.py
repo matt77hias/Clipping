@@ -5,10 +5,10 @@ from numpy import array
 ###############################################################################
 
 def clip_AABB(p_vs, pMin, pMax, step=False):
-    dim = p_vs[0].shape[0] 
+    dim = p_vs[0].shape[0]
     if dim == 2:
         return clip2D_AABB(p_vs, pMin, pMax, step=step)
-    elif dim == 3: 
+    elif dim == 3:
         return clip3D_AABB(p_vs, pMin, pMax, step=step)
     else:
         return p_vs
@@ -19,7 +19,7 @@ def clip_AABB(p_vs, pMin, pMax, step=False):
 ## Convex polygon <> Convex polygon
 ###############################################################################
 from intersection import intersect2D
-from orientation import inside2D 
+from orientation import inside2D
 
 def clip2D_AABB(p_vs, pMin, pMax, step=False):
     c_vs = [[pMax[0], pMin[1]],[pMax[0], pMax[1]],[pMin[0], pMax[1]],[pMin[0], pMin[1]]]
@@ -46,7 +46,7 @@ def clip2D(p_vs, c_vs):
 
             #Line segment clipping
             if inside2D(c_v1, c_v2, p_v2):
-                if not inside2D(c_v1, c_v2, p_v1): 
+                if not inside2D(c_v1, c_v2, p_v1):
                     new_p_vs.append(intersect2D(c_v1, c_v2, p_v1, p_v2))
                 new_p_vs.append(p_v2)
             elif inside2D(c_v1, c_v2, p_v1):
@@ -61,7 +61,7 @@ def clip2D(p_vs, c_vs):
 ###############################################################################
 
 from intersection import intersect3D
-from orientation import inside3D, sort_vertices 
+from orientation import inside3D, sort_vertices
 
 def clip3D_AABB(p_vs, pMin, pMax, step=False):
     sort_vertices(p_vs, a0=1, a1=2)
@@ -69,7 +69,7 @@ def clip3D_AABB(p_vs, pMin, pMax, step=False):
     c_vs = [array(v) for v in c_vs]
     if (step): print(p_vs)
     p_vs = clip3D_AABP(p_vs, c_vs, a0=1, a1=2)
-    
+
     sort_vertices(p_vs, a0=2, a1=0)
     c_vs = [[pMin[0], 0.0, pMax[2]],[pMax[0], 0.0, pMax[2]],[pMax[0], 0.0, pMin[2]],[pMin[0], 0.0, pMin[2]]]
     c_vs = [array(v) for v in c_vs]
@@ -79,7 +79,7 @@ def clip3D_AABB(p_vs, pMin, pMax, step=False):
     sort_vertices(p_vs, a0=0, a1=1)
     c_vs = [[pMax[0], pMin[1], 0.0],[pMax[0], pMax[1], 0.0],[pMin[0], pMax[1], 0.0],[pMin[0], pMin[1], 0.0]]
     c_vs = [array(v) for v in c_vs]
-    if (step): print(p_vs) 
+    if (step): print(p_vs)
     p_vs = clip3D_AABP(p_vs, c_vs, a0=0, a1=1)
 
     if (step): print(p_vs)
