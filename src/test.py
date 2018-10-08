@@ -5,11 +5,11 @@ from surfacearea import area
 from sutherlandhodgman import clip_AABB as clip_AABB_nonrobust
 
 def plot_clip_AABB(p_vs, pMin, pMax, clipf, step=True):
-    dim = p_vs[0].shape[0] 
+    dim = p_vs[0].shape[0]
     if dim == 2:
         n = None
         plotter = Plotter2D()
-    elif dim == 3: 
+    elif dim == 3:
         n = get_normal(p_vs)
         plotter = Plotter3D()
     else:
@@ -44,7 +44,7 @@ def test_triangle_clipping():
 
     plot_clip_AABB_robust(p_vs, pMin, pMax, step=True)
     plot_clip_AABB_nonrobust(p_vs, pMin, pMax, step=True)
-    
+
 def test_polygon_clipping():
     p_vs = [[50.0, 150.0], [200.0, 50.0], [350.0, 150.0], [350.0, 300.0], [250.0, 300.0], [200.0, 250.0], [150.0, 350.0], [100.0, 250.0], [100.0, 200.0]]
     p_vs = [array(v) for v in p_vs]
