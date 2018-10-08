@@ -20,7 +20,7 @@ import numpy as np
 def area(p_vs, n=None):
     if (len(p_vs) < 3):
         return 0.0
-       
+
     dim = p_vs[0].shape[0] 
     if dim == 2:
         return _area2D(p_vs)
@@ -30,24 +30,24 @@ def area(p_vs, n=None):
 def _area2D(p_vs):
     area = 0.0
     nb_p_vs = len(p_vs)
-    
+
     #for j in range(nb_p_vs):
     #    p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
     #    p_v2 = p_vs[j]
     #    area += + p_v1[0]*p_v2[1] - p_v2[0]*p_v1[1]
-    
+
     for j in range(nb_p_vs):
         p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
         p_v2 = p_vs[j]
         p_v3 = p_vs[(j+nb_p_vs+1) % nb_p_vs]
         area += p_v2[0] * (p_v3[1] - p_v1[1])
-    
+
     return 0.5 * abs(area)
-    
+
 def _area3D(p_vs, n):
     area = 0.0
     nb_p_vs = len(p_vs)
-    
+
     ax = abs(n[0])
     ay = abs(n[1])
     az = abs(n[2])
