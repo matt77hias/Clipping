@@ -22,37 +22,23 @@ def clip_AABP(p_vs, s, a, c_v):
     if (nb_p_vs <= 1):  return []
 
     new_p_vs = []
-    b = True #polygon is fully located on clipping plane
     for j in range(nb_p_vs):
         p_v1 = p_vs[(j+nb_p_vs-1) % nb_p_vs]
         p_v2 = p_vs[j]
 
         d1 = classify_aligned(s, a, c_v, p_v1)
         d2 = classify_aligned(s, a, c_v, p_v2)
-        if d2 < 0:
-            b = False
-            if d1 > 0:
-                alpha  = (p_v2[a] - c_v[a]) / (p_v2[a] - p_v1[a])
-                p = lerp(alpha, p_v1, p_v2)
-                new_p_vs.append(p)
-            elif d1 == 0:
-                _safe_append(new_p_vs, p_v1)
-        elif d2 > 0:
-            b = False
-            if d1 < 0:
-                alpha  = (p_v2[a] - c_v[a]) / (p_v2[a] - p_v1[a])
-                p = lerp(alpha, p_v1, p_v2)
-                new_p_vs.append(p)
-            elif d1 == 0 :
-                _safe_append(new_p_vs, p_v1)
 
-            new_p_vs.append(p_v2)
-        else:
-            if d1 != 0:
-                new_p_vs.append(p_v2)
+        if d1 * d2 == -1:
+            alpha  = (p_v2[a] - c_v[a]) / (p_v2[a] - p_v1[a])
+            p = lerp(alpha, p_v1, p_v2)
+            new_p_vs.append(p)
 
-    if b:
-        return p_vs
+        if d2 >= 0:
+            _safe_append(new_p_vs, p_v2)
+
+    if (len(new_p_vs) != 0) and (np.array_equal(new_p_vs[-1], new_p_vs[0])):
+        return new_p_vs[:-1]
     else:
         return new_p_vs
 
