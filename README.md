@@ -1,9 +1,9 @@
 [![Code quality][s1]][co] [![License][s2]][li]
 
-[s1]: https://api.codacy.com/project/badge/Grade/72b232a096e045c7ad0a13fb74032f9f
+[s1]: https://app.codacy.com/project/badge/Grade/72b232a096e045c7ad0a13fb74032f9f
 [s2]: https://img.shields.io/badge/licence-GPL%203.0-blue.svg
 
-[co]: https://www.codacy.com/app/matt77hias/Clipping?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matt77hias/Clipping&amp;utm_campaign=Badge_Grade
+[co]: https://app.codacy.com/gh/matt77hias/Clipping/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 [li]: https://raw.githubusercontent.com/matt77hias/Clipping/master/LICENSE.txt
 
 # Clipping
